@@ -23,7 +23,7 @@ footer.innerHTML = `
                 </ul>
             </div>
             <div class="copyright">
-                <p>Copyright &copy;2022. Designed by DevelopersLab</p>
+                <p>Copyright &copy;2022. Developed by DevelopersLab</p>
             </div>
         </div>
     </footer>

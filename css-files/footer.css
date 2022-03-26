@@ -105,9 +105,17 @@
         padding: 2% 3% 3% 2%;
     }
 
+    .footer-social a:hover {
+        color: #EC9315;
+    }
+
     .site-map ul li {
         display: inline-block;
         padding: 2% 7%;
+    }
+
+    .site-map ul li a:hover {
+        color: #EC9315;
     }
 
     .copyright {

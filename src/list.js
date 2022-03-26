@@ -1,4 +1,3 @@
-console.log("file logged");
 
-let containerFooter = document.querySelector(".containerF");
+let containerFooter = document.querySelector(".container");
 containerFooter.appendChild(footer.content);
