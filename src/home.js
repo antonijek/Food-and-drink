@@ -10,23 +10,32 @@ const hamburgerHandler = () => {
   openHamburger(hamburger);
   isHamburgerOpen(hamburger, hamburgerSmallScreen);
 };
-let url = "https://api.openbrewerydb.org/breweries?by_type=micro&per_page=10";
-let tenItems;
+let apiUrl =
+  "https://api.openbrewerydb.org/breweries?by_type=micro&per_page=10";
+let tenItemsFromResponse;
 let x = 0;
+let numberOfBoxes = 3;
+let numberOfBoxesForMObile = 1;
 
-fetch(url)
+fetch(apiUrl)
   .then((res) => res.json())
   .then((res) => {
-    tenItems = res;
-    return tenItems;
-  })
-  .then((res) => {
-    let threeItems = res.slice(x, x + 3);
-    threeItems.map((item) => {
-      createBox(item);
-    });
+    tenItemsFromResponse = res.slice();
+    hendlerResponse(
+      res,
+      window.innerWidth > "480" ? numberOfBoxes : numberOfBoxesForMObile
+    );
   });
 
+const hendlerResponse = (data, num) => {
+  console.log(data);
+  let threeItems = data.slice(x, x + num);
+  threeItems.map((item) => {
+    createBox(item);
+  });
+};
+
+//change names inside createBox
 const createBox = (data) => {
   let box = document.createElement("div");
   box.classList.add("box");
@@ -41,27 +50,47 @@ const createBox = (data) => {
   box.appendChild(button);
   boxes.appendChild(box);
 };
+//create variables instead 7  and 3
 
 const increaseX = () => {
   x++;
-  if (x === 7) {
+  if (x === 10) {
     x = 0;
   }
+
   nextItem();
   console.log(x);
 };
 const decreaseX = () => {
-  x--;
   if (x === 0) {
-    x = 7;
+    x = 10;
   }
+  x--;
   nextItem();
   console.log(x);
 };
 
 const nextItem = () => {
   boxes.innerHTML = "";
-  tenItems.slice(x, x + 3).map((item) => {
+  let threeItems = [];
+  if (window.innerWidth < "480") {
+    threeItems.push(tenItemsFromResponse[x]);
+  } else {
+    if (x <= 7) {
+      threeItems = tenItemsFromResponse.slice(x, x + 3);
+    } else if (x === 8) {
+      threeItems = tenItemsFromResponse
+        .slice(x, x + 2)
+        .concat(tenItemsFromResponse[0]);
+    } else if (x === 9) {
+      threeItems = tenItemsFromResponse
+        .slice(x, x + 1)
+        .concat(tenItemsFromResponse[0])
+        .concat(tenItemsFromResponse[1]);
+    }
+  }
+
+  threeItems.map((item) => {
     createBox(item);
   });
 };

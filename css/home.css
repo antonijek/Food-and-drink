@@ -6,15 +6,24 @@ html {
 }
 
 .slider {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
   width: 100%;
   height: auto;
   background-color: #ec9315;
+  justify-content: center;
   align-items: center;
-  justify-items: center;
+  padding: 10% 0;
+}
+.boxes {
+  display: flex;
+  width: 80%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
 }
 .box {
+  color: white;
+  text-align: center;
   width: 50%;
   height: 30vh;
   position: relative;
@@ -23,7 +32,7 @@ html {
 }
 
 .slider img {
-  display: none;
+  width: 5%;
 }
 
 @media screen and (min-width: 900px) {
@@ -54,6 +63,7 @@ html {
     height: 100%;
     justify-content: center;
     align-items: center;
+    visibility: visible;
   }
   .box {
     width: 25%;
