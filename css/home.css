@@ -1,9 +1,6 @@
 html {
   font-size: 16px;
 }
-.container {
-  width: 100vw;
-}
 
 .slider {
   display: flex;
@@ -12,7 +9,7 @@ html {
   background-color: #ec9315;
   justify-content: center;
   align-items: center;
-  padding: 10% 0;
+  padding: 5% 0;
 }
 .boxes {
   display: flex;
@@ -22,35 +19,90 @@ html {
   align-items: center;
 }
 .box {
+  font-size: 3.5vw;
   color: white;
   text-align: center;
   width: 50%;
-  height: 30vh;
-  position: relative;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../images/beer-background.jpg") right/cover;
+  height: 50vw;
+  background-position: right;
+  background-size: cover;
 }
 
 .slider img {
   width: 5%;
 }
+.side-bar {
+  display: none;
+}
 
-@media screen and (min-width: 900px) {
-  html {
-    font-size: 20px;
-  }
+@media screen and (min-width: 600px) {
   .container {
-    width: 90%;
-    margin: auto;
+    display: flex;
   }
-
   .slider {
     background-color: #ec9315;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 80%;
     height: 50%;
+  }
+  .boxes {
+    display: flex;
+    width: 80%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    visibility: visible;
+  }
+  .box {
+    font-size: 1.2rem;
+    width: 40%;
+    height: 33vw;
+    color: white;
+    border: 2px solid orange;
+    text-align: center;
+    position: relative;
+  }
+  .btn-box {
+    position: absolute;
+    bottom: 5%;
+  }
+  .side-bar {
+    display: block;
+    width: 20%;
+    height: auto;
+    background-color: rgb(187, 179, 179);
+    color: black;
+  }
+  .best-box {
+    text-align: center;
+    border: 1px solid black;
+    padding: 0;
+    overflow: hidden;
+  }
+  .best-box p {
+    padding: 5%;
+    margin: 0;
+  }
+
+  .best-box img {
+    width: 10vw;
+    height: 15vh;
+  }
+  .facebook-feed {
+    border: 2px solid red;
+    height: 10vh;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  html {
+    font-size: 20px;
+  }
+  body {
+    width: 90%;
+    margin: auto;
   }
 
   .slider img {
@@ -66,8 +118,9 @@ html {
     visibility: visible;
   }
   .box {
-    width: 25%;
-    height: 80%;
+    font-size: 1rem;
+    width: 30%;
+    height: 25vw;
     color: white;
     border: 2px solid orange;
     text-align: center;

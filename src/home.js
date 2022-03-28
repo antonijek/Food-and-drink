@@ -16,29 +16,39 @@ let tenItemsFromResponse;
 let x = 0;
 let numberOfBoxes = 3;
 let numberOfBoxesForMObile = 1;
+let numberOfBoxesForTablet = 2;
 
 fetch(apiUrl)
   .then((res) => res.json())
   .then((res) => {
     tenItemsFromResponse = res.slice();
+    //if screen less then 480 px only one box shown
     hendlerResponse(
       res,
-      window.innerWidth > "480" ? numberOfBoxes : numberOfBoxesForMObile
+      window.innerWidth < "600"
+        ? numberOfBoxesForMObile
+        : window.innerWidth < "992"
+        ? numberOfBoxesForTablet
+        : numberOfBoxes
     );
   });
 
 const hendlerResponse = (data, num) => {
   console.log(data);
-  let threeItems = data.slice(x, x + num);
-  threeItems.map((item) => {
-    createBox(item);
+  let items = data.slice(x, x + num);
+  items.map((item, i) => {
+    console.log(i);
+    createBox(item, i);
   });
 };
 
 //change names inside createBox
-const createBox = (data) => {
+const createBox = (data, number) => {
   let box = document.createElement("div");
   box.classList.add("box");
+  box.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  url('./images/brewery${number}.jpg')`;
+
   let paragraf = document.createElement("p");
   paragraf.innerHTML = `Name:<br>${data.name}<br><br>`;
   let paragraf1 = document.createElement("p");
@@ -47,6 +57,7 @@ const createBox = (data) => {
   box.appendChild(paragraf1);
   let button = document.createElement("button");
   button.innerHTML = "Read more";
+  button.classList.add("btn-box");
   box.appendChild(button);
   boxes.appendChild(box);
 };
@@ -72,26 +83,56 @@ const decreaseX = () => {
 
 const nextItem = () => {
   boxes.innerHTML = "";
-  let threeItems = [];
-  if (window.innerWidth < "480") {
-    threeItems.push(tenItemsFromResponse[x]);
+  let items = [];
+  if (window.innerWidth < "600") {
+    items.push(tenItemsFromResponse[x]);
+  } else if (window.innerWidth < "992") {
+    if (x === 9) {
+      items.push(tenItemsFromResponse[x], tenItemsFromResponse[0]);
+    } else {
+      items.push(tenItemsFromResponse[x], tenItemsFromResponse[x + 1]);
+    }
   } else {
     if (x <= 7) {
-      threeItems = tenItemsFromResponse.slice(x, x + 3);
+      items = tenItemsFromResponse.slice(x, x + 3);
     } else if (x === 8) {
-      threeItems = tenItemsFromResponse
+      items = tenItemsFromResponse
         .slice(x, x + 2)
         .concat(tenItemsFromResponse[0]);
     } else if (x === 9) {
-      threeItems = tenItemsFromResponse
+      items = tenItemsFromResponse
         .slice(x, x + 1)
         .concat(tenItemsFromResponse[0])
         .concat(tenItemsFromResponse[1]);
     }
   }
-
-  threeItems.map((item) => {
-    createBox(item);
+  items.map((item) => {
+    createBox(item, tenItemsFromResponse.indexOf(item));
+  });
+};
+fetch(
+  "https://api.openbrewerydb.org/breweries?by_type=large&per_page=10&page=3"
+)
+  .then((res) => res.json())
+  .then((res) => {
+    sortingByDistance(res);
+  });
+const theNearest3 = 3;
+const sortingByDistance = (data) => {
+  let arr = data.sort((a, b) =>
+    Number(a.longitude) < Number(b.longitude)
+      ? 1
+      : Number(b.longitude) < Number(a.longitude)
+      ? -1
+      : 0
+  );
+  arr.slice(0, theNearest3).map((item, i) => {
+    let p = document.createElement("p");
+    p.innerHTML = `${item.name}`;
+    let img = document.createElement("img");
+    img.src = `./images/brewery${i + 10}.jpg`;
+    p.appendChild(img);
+    bestBox.appendChild(p);
   });
 };
 
@@ -106,3 +147,4 @@ importedHeader.appendChild(header.content);
 let hamburger = document.querySelector(".hamburger");
 hamburger.addEventListener("click", hamburgerHandler);
 let hamburgerSmallScreen = document.querySelector(".hamburger-smallscreen");
+let bestBox = document.querySelector(".best-box");
