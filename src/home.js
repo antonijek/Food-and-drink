@@ -1,15 +1,3 @@
-const openHamburger = (element) => {
-  element.classList.toggle("change");
-};
-const isHamburgerOpen = (elem1, elem2) => {
-  elem1.classList.contains("change")
-    ? (elem2.style.visibility = "visible")
-    : (elem2.style.visibility = "hidden");
-};
-const hamburgerHandler = () => {
-  openHamburger(hamburger);
-  isHamburgerOpen(hamburger, hamburgerSmallScreen);
-};
 let apiUrl =
   "https://api.openbrewerydb.org/breweries?by_type=micro&per_page=10";
 let tenItemsFromResponse;
@@ -17,27 +5,25 @@ let x = 0;
 let numberOfBoxes = 3;
 let numberOfBoxesForMObile = 1;
 let numberOfBoxesForTablet = 2;
+const theNearest3 = 3;
+let screen =
+  window.innerWidth < "600"
+    ? numberOfBoxesForMObile
+    : window.innerWidth < "992"
+    ? numberOfBoxesForTablet
+    : numberOfBoxes;
 
 fetch(apiUrl)
   .then((res) => res.json())
   .then((res) => {
     tenItemsFromResponse = res.slice();
-    //if screen less then 480 px only one box shown
-    hendlerResponse(
-      res,
-      window.innerWidth < "600"
-        ? numberOfBoxesForMObile
-        : window.innerWidth < "992"
-        ? numberOfBoxesForTablet
-        : numberOfBoxes
-    );
+    //if screen less then 600 px only one box shown
+    hendlerResponse(res, screen);
   });
 
 const hendlerResponse = (data, num) => {
-  console.log(data);
   let items = data.slice(x, x + num);
   items.map((item, i) => {
-    console.log(i);
     createBox(item, i);
   });
 };
@@ -61,16 +47,14 @@ const createBox = (data, number) => {
   box.appendChild(button);
   boxes.appendChild(box);
 };
-//create variables instead 7  and 3
+//create variables instead 10  and 3
 
 const increaseX = () => {
   x++;
   if (x === 10) {
     x = 0;
   }
-
   nextItem();
-  console.log(x);
 };
 const decreaseX = () => {
   if (x === 0) {
@@ -78,7 +62,6 @@ const decreaseX = () => {
   }
   x--;
   nextItem();
-  console.log(x);
 };
 
 const nextItem = () => {
@@ -110,6 +93,9 @@ const nextItem = () => {
     createBox(item, tenItemsFromResponse.indexOf(item));
   });
 };
+
+setInterval(increaseX, 3000);
+
 fetch(
   "https://api.openbrewerydb.org/breweries?by_type=large&per_page=10&page=3"
 )
@@ -117,7 +103,7 @@ fetch(
   .then((res) => {
     sortingByDistance(res);
   });
-const theNearest3 = 3;
+
 const sortingByDistance = (data) => {
   let arr = data.sort((a, b) =>
     Number(a.longitude) < Number(b.longitude)
@@ -128,23 +114,39 @@ const sortingByDistance = (data) => {
   );
   arr.slice(0, theNearest3).map((item, i) => {
     let p = document.createElement("p");
-    p.innerHTML = `${item.name}`;
+    p.innerHTML = item.name;
     let img = document.createElement("img");
     img.src = `./images/brewery${i + 10}.jpg`;
     p.appendChild(img);
     bestBox.appendChild(p);
   });
 };
+let mousePointX = 0;
+let mousePointY = 0;
+const keyboardSliding = (e) => {
+  if (e.key === "ArrowRight" && mousePointX > 0 && mousePointY > 0) {
+    increaseX();
+  }
+  if (e.key === "ArrowLeft" && mousePointX > 0 && mousePointY > 0) {
+    decreaseX();
+  }
+};
+const setMousePosition = (e) => {
+  mousePointX = e.offsetX;
+  mousePointY = e.offsetY;
+};
 
+const resetMousePosition = () => {
+  mousePointX = 0;
+  mousePointY = 0;
+};
 let leftArrow = document.querySelector(".left-arrow");
 leftArrow.addEventListener("click", decreaseX);
 let rightArrow = document.querySelector(".right-arrow");
 rightArrow.addEventListener("click", increaseX);
-
+let slider = document.querySelector(".slider");
+slider.addEventListener("mouseenter", setMousePosition);
+slider.addEventListener("mouseleave", resetMousePosition);
+document.addEventListener("keyup", keyboardSliding);
 let boxes = document.querySelector(".boxes");
-let importedHeader = document.querySelector(".header");
-importedHeader.appendChild(header.content);
-let hamburger = document.querySelector(".hamburger");
-hamburger.addEventListener("click", hamburgerHandler);
-let hamburgerSmallScreen = document.querySelector(".hamburger-smallscreen");
 let bestBox = document.querySelector(".best-box");
