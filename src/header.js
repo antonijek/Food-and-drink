@@ -24,3 +24,20 @@ header.innerHTML = `
           <a href="#">Another</a>
         </div>
 `;
+const openHamburger = (element) => {
+  element.classList.toggle("change");
+};
+const isHamburgerOpen = (elem1, elem2) => {
+  elem1.classList.contains("change")
+    ? (elem2.style.visibility = "visible")
+    : (elem2.style.visibility = "hidden");
+};
+const hamburgerHandler = () => {
+  openHamburger(hamburger);
+  isHamburgerOpen(hamburger, hamburgerSmallScreen);
+};
+let importedHeader = document.querySelector(".header");
+importedHeader.appendChild(header.content);
+let hamburger = document.querySelector(".hamburger");
+hamburger.addEventListener("click", hamburgerHandler);
+let hamburgerSmallScreen = document.querySelector(".hamburger-smallscreen");
