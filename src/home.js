@@ -44,10 +44,47 @@ const createBox = (data, number) => {
   let button = document.createElement("button");
   button.innerHTML = "Read more";
   button.classList.add("btn-box");
+  button.addEventListener("click", openModal);
   box.appendChild(button);
   boxes.appendChild(box);
 };
 //create variables instead 10  and 3
+const openModal = (e) => {
+  let textContent = e.target.parentElement.firstElementChild.innerHTML;
+  let nameOfBrewery = textContent.slice(9, textContent.length - 8);
+  let brewery = tenItemsFromResponse.filter(
+    (item) => item.name === nameOfBrewery
+  )[0];
+  let index = tenItemsFromResponse.indexOf(brewery);
+  modal.innerHTML = "";
+  modal.style.display = "block";
+  overlay.style.display = "block";
+  createModalContent(brewery, index);
+};
+
+const createModalContent = (data, i) => {
+  let closeX = document.createElement("p");
+  closeX.innerHTML = "X";
+  closeX.addEventListener("click", closeModal);
+  let img = document.createElement("img");
+  img.src = `./images/brewery${i}.jpg`;
+  let name = document.createElement("h2");
+  name.innerHTML = `name: ${data.name}`;
+  let webAdress = document.createElement("h3");
+  webAdress.innerHTML = `web-adress: ${data.website_url}`;
+  let type = document.createElement("h3");
+  type.innerHTML = `type: ${data.brewery_type}`;
+  let address = document.createElement("h3");
+  address.innerHTML = `address: ${data.street}`;
+  let city = document.createElement("h3");
+  city.innerHTML = `city: ${data.city}`;
+  modal.append(closeX, name, img, webAdress, type, address, city);
+};
+
+const closeModal = () => {
+  modal.style.display = "none";
+  overlay.style.display = "none";
+};
 
 const increaseX = () => {
   x++;
@@ -150,3 +187,5 @@ slider.addEventListener("mouseleave", resetMousePosition);
 document.addEventListener("keyup", keyboardSliding);
 let boxes = document.querySelector(".boxes");
 let bestBox = document.querySelector(".best-box");
+let modal = document.querySelector(".modal");
+let overlay = document.querySelector(".overlay");
