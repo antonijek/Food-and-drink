@@ -151,7 +151,7 @@ const sortingByDistance = (data) => {
   );
   arr.slice(0, theNearest3).map((item, i) => {
     let p = document.createElement("p");
-    p.innerHTML = item.name;
+    p.innerHTML = `${item.name} <br>`;
     let img = document.createElement("img");
     img.src = `./images/brewery${i + 10}.jpg`;
     p.appendChild(img);
