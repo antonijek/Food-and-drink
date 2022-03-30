@@ -116,7 +116,6 @@ html {
     text-align: center;
     border: 1px solid black;
     padding: 0;
-    overflow: hidden;
   }
   .best-box p {
     padding: 5%;
@@ -125,7 +124,8 @@ html {
 
   .best-box img {
     width: 10vw;
-    height: 15vh;
+    height: 10vw;
+    border: 2px solid #ec9315;
   }
   .facebook-feed {
     border: 2px solid red;
