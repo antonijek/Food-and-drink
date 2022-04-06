@@ -7,3 +7,141 @@
 body {
     background-color: #FFF;
 }
+
+.container {
+    width: 100%;
+    height: auto;
+}
+
+.elements {
+    width: 100%;
+
+}
+
+.element {
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+    background-color: lightgray;
+    display: flex;
+    flex-direction: row;
+    margin-top: 3%;
+}
+
+.element-img {
+    width: 45vw;
+    padding: 3%;
+}
+
+.element-img img {
+    width: 35vw;
+    height: 20vh;
+}
+
+.info {
+    padding: 3%;
+}
+
+.info p {
+    /* padding-top:7%; */
+}
+
+.pagenumbers {
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagenumbers button {
+    width: 20px;
+    height: 30px;
+    appearance: none;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    background-color: #EC9315;
+    margin: 5px;
+    transition: 0.4s;
+    color: #FFF;
+    font-size: 12px;
+    text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+}
+
+.pagenumbers button:hover {
+    background-color: #3F352E;
+}
+
+.pagenumbers button.active {
+    background-color: #3F352E;
+    box-shadow: inset 0px 0px 4px rgba(0,0,0, 0.2);
+}
+
+.search {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 10% 0 2% 0;
+
+}
+
+.search input {
+    width: 60%;
+    padding: 2vw;
+    border: solid #3F352E 1px;
+}
+
+.filter {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.inp-option {
+    display: inline-block;
+    padding: 4vw 6vw;
+}
+
+/* laptops, desktops */
+@media screen and (min-width: 769px) {
+
+
+    .main {
+        background-color: red;
+    }
+    
+    .elements {
+        width: 50%;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .element {
+        width: 500px;
+        height: auto;
+        /* margin: 0 auto; */
+        background-color: lightgray;
+        margin-top: 3%;
+        padding: 50px;
+    }
+    
+    .element-img {
+        width: 200px;
+        padding: 3%;
+    }
+    
+    .element-img img {
+        width: 35vw;
+        height: 20vh;
+    }
+    
+    .info {
+
+    }
+    
+}
+
+

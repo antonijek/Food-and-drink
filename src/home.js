@@ -61,7 +61,7 @@ const openModal = (e) => {
   overlay.style.display = "block";
   createModalContent(brewery, index);
 };
-
+  
 const createModalContent = (data, i) => {
   let closeX = document.createElement("p");
   closeX.innerHTML = "X";
