@@ -1,7 +1,7 @@
 const header = document.createElement("template");
 header.id = "header";
 header.innerHTML = `
-     <header>
+     <header class="header">
      <div class="hamburger">
      <div class="bar1"></div>
      <div class="bar2"></div>
