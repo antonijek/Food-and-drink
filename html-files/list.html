@@ -4,23 +4,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css-files/list.css">
-    <link rel="stylesheet" href="../css-files/footer.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/list.css">
+    <link rel="stylesheet" href="../css/footer.css">
     <script src="https://kit.fontawesome.com/190456128e.js" crossorigin="anonymous"></script>
     <title>List</title>
 </head>
 <body>
-    
-    <div class="main-wrapper container">
+    <div class="header"></div>
+    <div class="container">
 
-        <div>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore laborum, harum dolores eveniet atque exercitationem aperiam nobis quod possimus neque fugiat nemo maxime amet praesentium, nam quo iste voluptatum itaque.lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae,tempora id quos dignissimos error architecto quo? Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis animi labore molestias eaque impedit molestiae, harum doloribus alias! Iste, nobis exercitationem quas voluptatum quo optio sint ducimus velit assumenda perferendis.</p>
+        <div class="search">
+            <input type="search" id="search-inp" placeholder="search breweries">
         </div>
 
+        <div class="filter">
+            <form>
+                <div class="inp-option">
+                    <input id="rb-name" type="radio" name="radiobtn" value="name" checked="checked">
+                    <label for="name">name</label>
+                </div>
+                <div class="inp-option">
+                    <input id="rb-type" type="radio" name="radiobtn" value="type">
+                    <label for="type">type</label>
+                </div>
+                <div class="inp-option">
+                    <input id="rb-city" type="radio" name="radiobtn" value="city">
+                    <label for="city">city</label>
+                </div>
+            </form>
+        </div>
+
+        <div class="main">
+            <div class="elements" id="elements"></div>
+            <div class="pagenumbers" id="pagination"></div>
+        </div>
+
+
     </div>
-
-    <script src="../src/footer.js"></script>
+    <script src="../src/header.js"></script>
     <script src="../src/list.js"></script>
-
 </body>
 </html>

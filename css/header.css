@@ -1,6 +1,6 @@
 .header {
   width: 100%;
-  background-color: black;
+  background-color: #3F352E;
   position: relative;
 }
 .hamburger {
@@ -35,6 +35,7 @@
   top: 100%;
   background-color: black;
 }
+
 .hamburger-smallscreen a {
   color: #ec9315;
   display: block;
@@ -53,10 +54,12 @@ header {
   padding-right: 10%;
   align-items: center;
 }
+
 header img {
   width: 20vw;
   height: 20vw;
 }
+
 nav {
   display: none;
 }
@@ -79,7 +82,7 @@ nav {
   .hamburger-smallscreen {
     display: none;
   }
-  nav {
+  nav{
     position: static;
     text-transform: uppercase;
     display: flex;
@@ -94,8 +97,10 @@ nav {
     font-size: 1rem;
     margin: 0;
   }
+
   nav a:focus {
     transform: scale(1.2);
     transition: 0.1s;
   }
+
 }
