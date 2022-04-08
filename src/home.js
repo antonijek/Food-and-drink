@@ -1,5 +1,5 @@
 let apiUrl =
-  "https://api.openbrewerydb.org/breweries?by_type=micro&per_page=10";
+  "https://api.openbrewerydb.org/breweries?by_type=regional&per_page=10";
 let tenItemsFromResponse;
 let x = 0;
 let numberOfBoxes = 3;
@@ -34,7 +34,6 @@ const createBox = (data, number) => {
   box.classList.add("box");
   box.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
   url('./images/brewery${number}.jpg')`;
-
   let paragraf = document.createElement("p");
   paragraf.innerHTML = `Name:<br>${data.name}<br><br>`;
   let paragraf1 = document.createElement("p");
@@ -44,18 +43,19 @@ const createBox = (data, number) => {
   let button = document.createElement("button");
   button.innerHTML = "Read more";
   button.classList.add("btn-box");
-  button.addEventListener("click", openModal);
+  button.addEventListener("click", (e) => {
+    openModal(
+      e.target.parentElement.style.backgroundImage.slice(78, 79),
+      tenItemsFromResponse
+    );
+  });
   box.appendChild(button);
   boxes.appendChild(box);
 };
 //create variables instead 10  and 3
-const openModal = (e) => {
-  let textContent = e.target.parentElement.firstElementChild.innerHTML;
-  let nameOfBrewery = textContent.slice(9, textContent.length - 8);
-  let brewery = tenItemsFromResponse.filter(
-    (item) => item.name === nameOfBrewery
-  )[0];
-  let index = tenItemsFromResponse.indexOf(brewery);
+
+const openModal = (index, arr) => {
+  brewery = arr[index];
   modal.innerHTML = "";
   modal.style.display = "block";
   overlay.style.display = "block";
@@ -177,6 +177,48 @@ const resetMousePosition = () => {
   mousePointX = 0;
   mousePointY = 0;
 };
+let allBreweryFromResponse;
+let apiUrl1 = "https://api.openbrewerydb.org/breweries?by_type=large";
+fetch(apiUrl1)
+  .then((res) => res.json())
+  .then((res) => {
+    allBreweryFromResponse = res;
+    loadMore();
+  });
+
+const createTopBox = (data, index) => {
+  let topRated = document.createElement("div");
+  topRated.classList.add("top-rated");
+  topRated.addEventListener("click", () => {
+    openModal(index, allBreweryFromResponse);
+  });
+  let img = document.createElement("img");
+  img.src = `./images/brewery${index}.jpg`;
+  let state = document.createElement("p");
+  state.innerHTML = data.state;
+  let city = document.createElement("p");
+  city.innerHTML = data.street;
+  let textInfo = document.createElement("div");
+  textInfo.classList.add("textInfo");
+  let name = document.createElement("p");
+  name.innerHTML = `"${data.name}"`;
+  textInfo.append(name, city, state);
+  topRated.append(img, textInfo);
+  wraper.appendChild(topRated);
+};
+
+let y = 0;
+const loadMore = () => {
+  wraper.innerHTML = "";
+  allBreweryFromResponse.slice(0, screen * 2 + y).map((item, i) => {
+    createTopBox(item, i);
+  });
+  y += screen;
+};
+
+let wraper = document.querySelector(".top-rated-wraper");
+let loadMoreBtn = document.querySelector(".btn");
+loadMoreBtn.addEventListener("click", loadMore);
 let leftArrow = document.querySelector(".left-arrow");
 leftArrow.addEventListener("click", decreaseX);
 let rightArrow = document.querySelector(".right-arrow");

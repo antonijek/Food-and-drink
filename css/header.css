@@ -43,9 +43,18 @@
   font-size: 1rem;
   margin: 5%;
 }
+
 .hamburger-smallscreen a:focus {
   transform: scale(1.2);
   transition: 0.1s;
+}
+
+#large,
+#regional,
+#bar {
+  margin-left: 10vw;
+  font-size: 0.9em;
+  font-style: italic;
 }
 
 header {
@@ -69,6 +78,14 @@ nav {
     display: none;
   }
 
+  #large,
+  #regional,
+  #bar {
+    margin-left: 0;
+    font-size: 1em;
+    font-style: normal;
+  }
+
   header {
     display: flex;
     justify-content: space-around;
@@ -85,21 +102,58 @@ nav {
   nav {
     position: static;
     text-transform: uppercase;
-    display: flex;
-    justify-content: space-evenly;
+    display: inline-block;
     width: 80%;
     visibility: visible;
   }
-  nav a {
+
+  nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  nav ul li {
+    list-style-type: none;
+    position: relative;
+  }
+
+  nav ul li a {
     color: #ec9315;
-    display: inline-block;
     text-decoration: none;
     font-size: 1rem;
     margin: 0;
   }
 
-  nav a:focus {
+  nav ul li a:focus {
     transform: scale(1.2);
     transition: 0.1s;
+  }
+
+  nav ul li ul {
+    display: none;
+    position: absolute;
+    background-color: #3f352e;
+    padding: 10px;
+    z-index: 100;
+  }
+
+  nav ul li:hover ul {
+    display: block;
+  }
+
+  nav ul li ul li {
+    padding: 25px;
+    width: 200px;
+  }
+
+  nav ul li ul li a {
+    color: #fff;
+    padding: 8px 14px;
+    display: block;
+  }
+
+  nav ul li ul li a:hover {
+    background-color: #ec9315;
   }
 }
