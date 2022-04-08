@@ -1,6 +1,6 @@
 .header {
   width: 100%;
-  background-color: #3F352E;
+  background-color: #3f352e;
   position: relative;
 }
 .hamburger {
@@ -82,7 +82,7 @@ nav {
   .hamburger-smallscreen {
     display: none;
   }
-  nav{
+  nav {
     position: static;
     text-transform: uppercase;
     display: flex;
@@ -102,5 +102,4 @@ nav {
     transform: scale(1.2);
     transition: 0.1s;
   }
-
 }

@@ -14,7 +14,7 @@ header.innerHTML = `
     <a href="#">Custom page</a>
     <a href="#">Another</a>
   </nav>
- <a href ='#'> <img src="../images/beer_123784216.png" alt="logo" /></a>
+ <a href ='#'> <img src="./images/beer_123784216.png" alt="logo" /></a>
 </header>
 <div class="hamburger-smallscreen">
           <a href="#">Home</a>
