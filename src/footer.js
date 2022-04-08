@@ -1,7 +1,7 @@
 const footer = document.createElement("template");
 footer.id = "footer";
 footer.innerHTML = `
-    <footer>
+    <footer class="footer">
         <div class="footer-wrapper">
             <div class="footer-content">
                 <h2>Brewery</h2>
@@ -28,3 +28,6 @@ footer.innerHTML = `
         </div>
     </footer>
 `;
+
+let importedFooter = document.querySelector(".footer");
+importedFooter.appendChild(footer.content);

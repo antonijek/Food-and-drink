@@ -1,8 +1,4 @@
-// Ucitavanje headera
-let containerHeader = document.querySelector(".container");
-containerHeader.appendChild(header.content);
 
-// Niz u kojem smijestamo elemente
 const listItems = [];
 
 url = "https://api.openbrewerydb.org/breweries?per_page=30";
@@ -68,7 +64,6 @@ fetch(url)
                 let img = document.createElement('img');
                 img.src = `../images/brewery${imgIndex++}.jpg`;
 
-                // console.log(imgIndex);
                 divElement.appendChild(divImg);
                 divImg.appendChild(img);
 
@@ -81,7 +76,7 @@ fetch(url)
                 let pCity = document.createElement('p')
                 let pState = document.createElement('p')
 
-                pName.innerText = item.name;
+                pName.innerHTML = "<b>" + item.name + "</b>";
                 pType.innerText = "type: " + item.brewery_type;
                 pCity.innerText = "city: " + item.city;
                 pState.innerText = "state: " + item.state;
@@ -120,6 +115,7 @@ fetch(url)
         }
 
     });
+
 
 
 
