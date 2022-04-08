@@ -5,7 +5,7 @@ containerHeader.appendChild(header.content);
 // Niz u kojem smijestamo elemente
 const listItems = [];
 
-url = "https://api.openbrewerydb.org/breweries";
+url = "https://api.openbrewerydb.org/breweries?per_page=30";
 
 fetch(url)
     .then((res) => res.json())
