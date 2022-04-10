@@ -54,14 +54,14 @@ const createBox = (data, number) => {
 };
 //create variables instead 10  and 3
 
-const openModal = (index, arr) => {
-  brewery = arr[index];
+const openModal = (index, arr, x = 0) => {
+  let brewery = arr[index - x];
   modal.innerHTML = "";
   modal.style.display = "block";
   overlay.style.display = "block";
   createModalContent(brewery, index);
 };
-  
+
 const createModalContent = (data, i) => {
   let closeX = document.createElement("p");
   closeX.innerHTML = "X";
@@ -149,12 +149,16 @@ const sortingByDistance = (data) => {
       ? -1
       : 0
   );
-  arr.slice(0, theNearest3).map((item, i) => {
+  let nearest3 = arr.slice(0, theNearest3);
+  nearest3.map((item, i) => {
     let p = document.createElement("p");
     p.innerHTML = `${item.name} <br>`;
     let img = document.createElement("img");
     img.src = `./images/brewery${i + 10}.jpg`;
     p.appendChild(img);
+    p.addEventListener("click", () => {
+      openModal(i + 10, nearest3, 10);
+    });
     bestBox.appendChild(p);
   });
 };
