@@ -51,6 +51,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 1;
 }
 .modal p {
   font-size: 2vw;
@@ -68,13 +69,14 @@ body {
   border: 2px solid #ec9315;
 }
 .overlay {
-  position: absolute; /* Positioning and size */
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(128, 128, 128, 0.5); /* color */
-  display: none; /* making it hidden by default */
+  background-color: rgba(128, 128, 128, 0.5);
+  display: none;
+  z-index: 1;
 }
 
 .container1 {
@@ -158,6 +160,7 @@ body {
     height: auto;
     background-color: gray;
     color: black;
+    overflow: hidden;
   }
   .best-box {
     text-align: center;
@@ -175,8 +178,11 @@ body {
     border: 2px solid #ec9315;
   }
   .facebook-feed {
-    border: 2px solid red;
-    height: 10vh;
+    width: 100%;
+    position: relative;
+  }
+  .test {
+    display: none;
   }
   .container1 {
     background-color: #ec9315;
@@ -231,6 +237,13 @@ body {
     text-align: center;
     position: relative;
   }
+  .test {
+    display: block;
+    position: absolute;
+    border: none;
+    transform: scale(0.8) translate(-55%, 50%);
+    left: 50%;
+  }
   .container1 {
     background-color: #ec9315;
     display: block;
@@ -241,5 +254,14 @@ body {
   }
   .top-rated {
     width: 90%;
+  }
+}
+@media screen and (min-width: 1250px) {
+  .test {
+    display: block;
+    position: absolute;
+    border: none;
+    transform: scale(1) translate(-45%, 50%);
+    left: 50%;
   }
 }

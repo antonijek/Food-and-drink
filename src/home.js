@@ -235,3 +235,5 @@ let boxes = document.querySelector(".boxes");
 let bestBox = document.querySelector(".best-box");
 let modal = document.querySelector(".modal");
 let overlay = document.querySelector(".overlay");
+let ttt = document.querySelector("._1z7u _2ph-");
+console.log(ttt);
