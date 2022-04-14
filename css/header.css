@@ -114,7 +114,7 @@ nav {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 13vh;
+    height: 18vh;
     
   }
   header img {
@@ -179,7 +179,7 @@ nav {
   }
 
   nav ul li:hover ul {
-    height: 23vh;
+    height: 225px;
     visibility:visible;
     opacity: 0.9;
     transform: translateY();

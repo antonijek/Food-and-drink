@@ -9,6 +9,7 @@
   background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)),
     url("../images/constacus-bckgr.jpg");
   background-position: 80%;
+
   display: flex;
   justify-content: center;
   align-items: center;
