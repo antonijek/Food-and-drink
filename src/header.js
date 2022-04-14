@@ -11,8 +11,8 @@ header.innerHTML = `
 
     <nav>
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">List</a>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../html/list.html" id="list-a">List</a>
           <ul>
             <li><a id="regional" href="#">Regional</a></li>
             <li><a id="large" href="#">Large</a></li>
@@ -24,21 +24,31 @@ header.innerHTML = `
       </ul>
     </nav>
 
-    <a href ='#'> <img src="./images/beer_123784216.png" alt="logo" /></a>
+    <a href ='#'> <img src="../images/beer_123784216.png" alt="logo" /></a>
 
   </header>
 
   <div class="hamburger-smallscreen">
-    <a href="#">Home</a>
-    <a href="#">List</a>
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li class="ham-dropdwn">
+        <a href="../html/list.html">List</a>
+        <a id="list-arrow" href="#">
+          <i class="fa-solid fa-chevron-down"></i>
+        </a>
+      </li>
+      
+      <div id="ham-dropdwn-div" class="hide">
+        <ul id="dropdwn-ul">
+          <li><a id="regional" href="#">Regional</a></li>
+          <li><a id="large" href="#">Large</a></li>
+          <li><a id="bar" href="#">Bar</a></li>
+        </ul>
+      </div>
 
-    <a id="regional" href="#">Regional</a>
-    <a id="large" href="#">Large</a>
-    <a id="bar" href="#">Bar</a>
-
-    <a href="#">About us</a>
-    <a href="#">Custom page</a>
-    <a href="#">Another</a>
+      <li><a href="#">About us</a></li>
+      <li><a href="#">Contact us</a></li>
+    </ul>
   </div>
 `;
 
@@ -78,5 +88,11 @@ export function returnLarge() {
 export function returnBar() {
   return navBar;
 }
+
+let listArrow = document.getElementById('list-arrow');
+let hamDropdwnDiv = document.getElementById('ham-dropdwn-div');
+
+
+listArrow.addEventListener('click', () => { hamDropdwnDiv.classList.toggle('hide'); })
 
 

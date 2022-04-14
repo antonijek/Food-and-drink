@@ -13,7 +13,7 @@ let navLarge = returnLarge();
 import { returnBar } from '../src/header.js';
 let navBar = returnBar();
 
-
+// for default
 window.apiUrl = "https://api.openbrewerydb.org/breweries?per_page=30";
 fetch(apiUrl)
 .then((res) => res.json())
@@ -23,8 +23,20 @@ fetch(apiUrl)
         });
 });
 
+function clearWrapper(listElem, paginElem) {
+    listElem.innerHTML = "";
+    paginElem.innerHTML = "";
+}
+
+let printType = document.getElementById('selected-type');
+
+// for regional
 navRegional.addEventListener('click', function() {
     listItems = [];
+
+    printType.innerText = 'Type: Regional';
+
+    clearWrapper(listElement, paginationElement);
 
     window.apiUrl = "https://api.openbrewerydb.org/breweries?by_type=regional";
     fetch(apiUrl)
@@ -36,8 +48,13 @@ navRegional.addEventListener('click', function() {
     });
 });
 
+// for large
 navLarge.addEventListener('click', function() {
     listItems = [];
+
+    printType.innerText = 'Type: Large';
+
+    clearWrapper(listElement, paginationElement);
 
     window.apiUrl = "https://api.openbrewerydb.org/breweries?by_type=large";
     fetch(apiUrl)
@@ -49,8 +66,13 @@ navLarge.addEventListener('click', function() {
     });
 });
 
+// for bar
 navBar.addEventListener('click', function() {
     listItems = [];
+
+    printType.innerText = 'Type: Bar';
+
+    clearWrapper(listElement, paginationElement);
 
     window.apiUrl = "https://api.openbrewerydb.org/breweries?by_type=bar";
     fetch(apiUrl)

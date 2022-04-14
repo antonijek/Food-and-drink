@@ -1,3 +1,4 @@
+
 .header {
   width: 100%;
   background-color: #3F352E;
@@ -33,32 +34,55 @@
   text-transform: uppercase;
   position: absolute;
   top: 100%;
-  background-color: black;
+  background-color: #3F352E;
 }
 
-.hamburger-smallscreen a {
-  color: #ec9315;
-  display: block;
+.hamburger-smallscreen ul {
+  list-style-type: none;
+}
+
+.hamburger-smallscreen ul li a {
   text-decoration: none;
+  color: #D1D3D4;
+  display: block;
   font-size: 1rem;
-  margin: 5%;
+  padding: 5%;
 }
 
-.hamburger-smallscreen a:focus {
-  transform: scale(1.2);
-  transition: 0.1s;
+.ham-dropdwn {
+  width: 100%;
+  display: inline-block;
+}
+
+.ham-dropdwn a {
+
+  float: left;
+}
+
+.ham-dropdwn #list-arrow {
+  float: right;
+}
+
+.hide {
+  display: none
+}
+
+#dropdwn-ul {
+  display: block;
+}
+
+#list-arrow:focus{
+  color: #ec9315;
 }
 
 #large, #regional, #bar {
   margin-left: 10vw;
   font-size: 0.9em;
-  font-style: italic;
 }
 
 header {
   display: flex;
   justify-content: space-between;
-  padding-right: 10%;
   align-items: center;
 }
 
@@ -85,12 +109,13 @@ nav {
   header {
     display: flex;
     justify-content: space-around;
-    padding: 3%;
     align-items: center;
+    height: 10vh;
+    
   }
   header img {
-    width: 7vw;
-    height: 7vw;
+    width: 70px;
+    height: 70px;
   }
   .hamburger-smallscreen {
     display: none;
@@ -104,9 +129,12 @@ nav {
   }
 
   nav ul {
+    font-size: 16px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    padding: 0;
+    margin: 0;
   }
 
   nav ul li {
@@ -115,32 +143,50 @@ nav {
   }
 
   nav ul li a {
-    color: #ec9315;
+    color: #D1D3D4;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 1.1em;
     margin: 0;
   }
 
-  nav ul li a:focus {
-    transform: scale(1.2);
-    transition: 0.1s;
+  nav ul li a:hover {
+    color: #ec9315;
+  }
+
+  nav ul li:hover {
+    transition: 0.3s;
+    transform: scale(1.1);
   }
 
   nav ul li ul {
-    display: none;
+    margin-left: -100px;
+    width: 12vw;
+    height: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .2s ease-in-out;
+    display: block;
     position: absolute;
     background-color: #3F352E;
-    padding: 10px;
+    border-radius: 10px;
+    padding: 15px;
     z-index: 100;
+
   }
 
   nav ul li:hover ul {
-    display: block;
+    height: 23vh;
+    visibility:visible;
+    opacity: 0.9;
+    transform: translateY();
+
+    
   }
 
   nav ul li ul li {
-    padding: 25px;
-    width: 200px;
+    width: 100%;
+    padding: 30px 0 0 0;
+    text-align: center;
   }
 
   nav ul li ul li a {
@@ -151,6 +197,12 @@ nav {
 
   nav ul li ul li a:hover {
     background-color: #ec9315;
+    color: #111;
+  }
+
+  .list-a {
+    border: 2px solid red;
+    padding: 5px;
   }
 
 }
