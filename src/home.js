@@ -1,5 +1,7 @@
-let apiUrl =
+let apiUrlRegional =
   "https://api.openbrewerydb.org/breweries?by_type=regional&per_page=10";
+let apiUrlLarge =
+  "https://api.openbrewerydb.org/breweries?by_type=large&&page=3";
 let tenItemsFromResponse;
 let x = 0;
 let numberOfBoxes = 3;
@@ -13,7 +15,7 @@ let screen =
     ? numberOfBoxesForTablet
     : numberOfBoxes;
 
-fetch(apiUrl)
+fetch(apiUrlRegional)
   .then((res) => res.json())
   .then((res) => {
     tenItemsFromResponse = res.slice();
@@ -28,40 +30,43 @@ const hendlerResponse = (data, num) => {
   });
 };
 
+const loadMoreInformation = (e) => {
+  let backgroundImage = e.target.parentElement.style.backgroundImage;
+  let numberOfImage = backgroundImage.slice(
+    backgroundImage.length - 7,
+    backgroundImage.length - 6
+  );
+  openModal(numberOfImage, tenItemsFromResponse);
+};
+
 //change names inside createBox
 const createBox = (data, number) => {
   let box = document.createElement("div");
   box.classList.add("box");
   box.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
   url('./images/brewery${number}.jpg')`;
-  let paragraf = document.createElement("p");
-  paragraf.innerHTML = `Name:<br>${data.name}<br><br>`;
-  let paragraf1 = document.createElement("p");
-  paragraf1.innerHTML = `City:<br><br>${data.city}`;
-  box.appendChild(paragraf);
-  box.appendChild(paragraf1);
-  let button = document.createElement("button");
-  button.innerHTML = "Read more";
-  button.classList.add("btn-box");
-  button.addEventListener("click", (e) => {
-    openModal(
-      e.target.parentElement.style.backgroundImage.slice(78, 79),
-      tenItemsFromResponse
-    );
-  });
-  box.appendChild(button);
+  let name = document.createElement("p");
+  name.innerHTML = `${data.name}`;
+  let city = document.createElement("p");
+  city.innerHTML = `${data.city}`;
+  box.appendChild(name);
+  box.appendChild(city);
+  let readMoreButton = document.createElement("button");
+  readMoreButton.innerHTML = "Read more";
+  readMoreButton.classList.add("btn-box");
+  readMoreButton.addEventListener("click", loadMoreInformation);
+  box.appendChild(readMoreButton);
   boxes.appendChild(box);
 };
-//create variables instead 10  and 3
 
-const openModal = (index, arr) => {
-  brewery = arr[index];
+const openModal = (index, arr, x = 0) => {
+  let brewery = arr[index - x];
   modal.innerHTML = "";
   modal.style.display = "block";
   overlay.style.display = "block";
   createModalContent(brewery, index);
 };
-  
+
 const createModalContent = (data, i) => {
   let closeX = document.createElement("p");
   closeX.innerHTML = "X";
@@ -88,14 +93,14 @@ const closeModal = () => {
 
 const increaseX = () => {
   x++;
-  if (x === 10) {
+  if (x === tenItemsFromResponse.length) {
     x = 0;
   }
   nextItem();
 };
 const decreaseX = () => {
   if (x === 0) {
-    x = 10;
+    x = tenItemsFromResponse.length;
   }
   x--;
   nextItem();
@@ -133,9 +138,7 @@ const nextItem = () => {
 
 setInterval(increaseX, 3000);
 
-fetch(
-  "https://api.openbrewerydb.org/breweries?by_type=large&per_page=10&page=3"
-)
+fetch(apiUrlLarge)
   .then((res) => res.json())
   .then((res) => {
     sortingByDistance(res);
@@ -149,13 +152,17 @@ const sortingByDistance = (data) => {
       ? -1
       : 0
   );
-  arr.slice(0, theNearest3).map((item, i) => {
-    let p = document.createElement("p");
-    p.innerHTML = `${item.name} <br>`;
+  let nearest3 = arr.slice(0, theNearest3);
+  nearest3.map((item, i) => {
+    let name = document.createElement("p");
+    name.innerHTML = `${item.name} <br><br>`;
     let img = document.createElement("img");
     img.src = `./images/brewery${i + 10}.jpg`;
-    p.appendChild(img);
-    bestBox.appendChild(p);
+    name.appendChild(img);
+    name.onclick = () => {
+      openModal(i + 10, nearest3, 10);
+    };
+    bestBox.appendChild(name);
   });
 };
 let mousePointX = 0;
@@ -178,8 +185,8 @@ const resetMousePosition = () => {
   mousePointY = 0;
 };
 let allBreweryFromResponse;
-let apiUrl1 = "https://api.openbrewerydb.org/breweries?by_type=large";
-fetch(apiUrl1)
+
+fetch(apiUrlLarge)
   .then((res) => res.json())
   .then((res) => {
     allBreweryFromResponse = res;
@@ -189,19 +196,17 @@ fetch(apiUrl1)
 const createTopBox = (data, index) => {
   let topRated = document.createElement("div");
   topRated.classList.add("top-rated");
-  topRated.addEventListener("click", () => {
-    openModal(index, allBreweryFromResponse);
-  });
+  topRated.onclick = () => openModal(index, allBreweryFromResponse);
   let img = document.createElement("img");
   img.src = `./images/brewery${index}.jpg`;
   let state = document.createElement("p");
   state.innerHTML = data.state;
   let city = document.createElement("p");
-  city.innerHTML = data.street;
+  city.innerHTML = data.city;
   let textInfo = document.createElement("div");
-  textInfo.classList.add("textInfo");
+  textInfo.classList.add("text-info");
   let name = document.createElement("p");
-  name.innerHTML = `"${data.name}"`;
+  name.innerHTML = `${data.name}`;
   textInfo.append(name, city, state);
   topRated.append(img, textInfo);
   wraper.appendChild(topRated);
@@ -214,6 +219,9 @@ const loadMore = () => {
     createTopBox(item, i);
   });
   y += screen;
+  if (y >= allBreweryFromResponse.length) {
+    loadMoreBtn.classList.add("disabled");
+  }
 };
 
 let wraper = document.querySelector(".top-rated-wraper");

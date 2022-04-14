@@ -73,9 +73,9 @@ let hamburger = document.querySelector(".hamburger");
 hamburger.addEventListener("click", hamburgerHandler);
 let hamburgerSmallScreen = document.querySelector(".hamburger-smallscreen");
 
-let navRegional = document.getElementById('regional');
-let navLarge = document.getElementById('large');
-let navBar = document.getElementById('bar');
+let navRegional = document.getElementById("regional");
+let navLarge = document.getElementById("large");
+let navBar = document.getElementById("bar");
 
 export function returnRegional() {
   return navRegional;
