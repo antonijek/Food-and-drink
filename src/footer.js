@@ -3,9 +3,7 @@ footer.id = "footer";
 footer.innerHTML = `
     <footer class="footer">
         <div class="footer-wrapper">
-            <div class="footer-content">
-                <h2>Brewery</h2>
-            </div>
+
             <div class="footer-social">
                 <a href="#"><i class="fa-brands fa-facebook"></i></a>
                 <a href="#"><i class="fa-brands fa-twitter"></i></a>
