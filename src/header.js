@@ -20,7 +20,7 @@ header.innerHTML = `
           </ul>
         </li>
         <li><a href="#">About us</a></li>
-        <li><a href="#">Contact us</a></li>
+        <li><a href="../html/contact-us.html">Contact us</a></li>
       </ul>
     </nav>
 
@@ -46,8 +46,8 @@ header.innerHTML = `
         </ul>
       </div>
 
-      <li><a href="#">About us</a></li>
-      <li><a href="#">Contact us</a></li>
+      <li><a href="../html/about-us.html">About us</a></li>
+      <li><a href="../html/contact-us.html">Contact us</a></li>
     </ul>
   </div>
 `;

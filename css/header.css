@@ -170,7 +170,7 @@ nav {
     background-color: #3F352E;
     border-radius: 10px;
     padding: 15px;
-    z-index: 100;
+    z-index: 1000;
 
   }
 
@@ -179,8 +179,7 @@ nav {
     visibility:visible;
     opacity: 0.9;
     transform: translateY();
-
-    
+    z-index: 1000;
   }
 
   nav ul li ul li {
@@ -201,7 +200,7 @@ nav {
   }
 
   .list-a {
-    border: 2px solid red;
+    border: 2px solid #111;
     padding: 5px;
   }
 
