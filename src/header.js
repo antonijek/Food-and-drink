@@ -1,3 +1,4 @@
+
 const header = document.createElement("template");
 header.id = "header";
 header.innerHTML = `
@@ -13,7 +14,7 @@ header.innerHTML = `
       <ul>
         <li><a class="current" href="../index.html">Home</a></li>
         <li><a class="current" href="../html/list.html" id="list-a">List</a>
-          <ul>
+          <ul class="dropdwn-ul">
             <li><a class="regional" href="#">Regional</a></li>
             <li><a class="large" href="#">Large</a></li>
             <li><a class="bar" href="#">Bar</a></li>
@@ -108,6 +109,7 @@ let hamDropdwnDiv = document.getElementById('ham-dropdwn-div');
 
 listArrow.addEventListener('click', () => { hamDropdwnDiv.classList.toggle('hide'); })
 
+// for active link 
 const ActivePage = window.location.pathname;
 const navLinks = document.querySelectorAll('.current')
 .forEach(link => {
@@ -115,5 +117,3 @@ const navLinks = document.querySelectorAll('.current')
     link.classList.add('active');
   }
 });
-
-

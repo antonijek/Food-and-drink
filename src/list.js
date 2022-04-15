@@ -1,31 +1,25 @@
 
 
-let listItems = [];
 
-window.apiUrl = "";
-
+// import dropdown lists
 import { returnRegional } from '../src/header.js';
 let navRegional = returnRegional();
-
 import { returnLarge } from '../src/header.js';
 let navLarge = returnLarge();
-
 import { returnBar } from '../src/header.js';
 let navBar = returnBar();
-
-//for hamburger menu
+//for hamburger menu 
 import { returnRegionalHm } from '../src/header.js';
 let navRegionalHm = returnRegionalHm();
-
 import { returnLargeHm } from '../src/header.js';
 let navLargeHm = returnLargeHm();
-
 import { returnBarHm } from '../src/header.js';
 let navBarHm = returnBarHm();
 
+// array of elements
+let listItems = [];
 
-
-// for default
+// for default display
 window.apiUrl = "https://api.openbrewerydb.org/breweries?per_page=30";
 fetch(apiUrl)
 .then((res) => res.json())
@@ -33,8 +27,15 @@ fetch(apiUrl)
         data.forEach(elem => {
             listItems.push(elem);
         });
-});
+})
+.catch((error) => {
+    console.error('Error:', error);
+  });
 
+/** 
+** @param listElem - all elements on the current page
+** @param paginElem - pagination element on the current page
+ */
 function clearWrapper(listElem, paginElem) {
     listElem.innerHTML = "";
     paginElem.innerHTML = "";
@@ -42,71 +43,83 @@ function clearWrapper(listElem, paginElem) {
 
 let printType = document.getElementById('selected-type');
 
-// for regional
+// for regional 
 navRegional.addEventListener('click', function() {
     listItems = [];
-    printType.innerText = 'Type: Regional';
+    printType.innerText = 'type: Regional';
     clearWrapper(listElement, paginationElement);
-    window.apiUrl = "https://api.openbrewerydb.org/breweries?by_type=regional";
+    window.apiUrl = "https://api.openbrewerydb.org/breweries?by_type=regional&per_page=25";
     fetch(apiUrl)
     .then((res) => res.json())
     .then((data) => {
         data.forEach(elem => {
             listItems.push(elem);
         });
-    });
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+      });
 });
 
-// for regional - hamburger menu
+// regional - hamburger menu
 navRegionalHm.addEventListener('click', function() {
     listItems = [];
-    printType.innerText = 'Type: Regional';
+    printType.innerText = 'type: Regional';
     clearWrapper(listElement, paginationElement);
-    window.apiUrl = "https://api.openbrewerydb.org/breweries?by_type=regional";
+    window.apiUrl = "https://api.openbrewerydb.org/breweries?by_type=regional&per_page=25";
     fetch(apiUrl)
     .then((res) => res.json())
     .then((data) => {
         data.forEach(elem => {
             listItems.push(elem);
         });
-    });
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+      });
 });
 
 // for large
 navLarge.addEventListener('click', function() {
     listItems = [];
-    printType.innerText = 'Type: Large';
+    printType.innerText = 'type: Large';
     clearWrapper(listElement, paginationElement);
-    window.apiUrl = "https://api.openbrewerydb.org/breweries?by_type=large";
+    window.apiUrl = "https://api.openbrewerydb.org/breweries?by_type=large&per_page=25";
     fetch(apiUrl)
     .then((res) => res.json())
     .then((data) => {
         data.forEach(elem => {
             listItems.push(elem);
         });
-    });
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+      });
 });
 
-// for large - hamburger
+// large - hamburger
 navLargeHm.addEventListener('click', function() {
     listItems = [];
-    printType.innerText = 'Type: Large';
+    printType.innerText = 'type: Large';
     clearWrapper(listElement, paginationElement);
-    window.apiUrl = "https://api.openbrewerydb.org/breweries?by_type=large";
+    window.apiUrl = "https://api.openbrewerydb.org/breweries?by_type=large&per_page=25";
     fetch(apiUrl)
     .then((res) => res.json())
     .then((data) => {
         data.forEach(elem => {
             listItems.push(elem);
         });
-    });
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+      });
 });
 
 
 // for bar
 navBar.addEventListener('click', function() {
     listItems = [];
-    printType.innerText = 'Type: Bar';
+    printType.innerText = 'type: Bar';
     clearWrapper(listElement, paginationElement);
     window.apiUrl = "https://api.openbrewerydb.org/breweries?by_type=bar";
     fetch(apiUrl)
@@ -115,25 +128,31 @@ navBar.addEventListener('click', function() {
         data.forEach(elem => {
             listItems.push(elem);
         });
-    });
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+      });
 });
 
-// for bar - hamburger-menu
+// bar - hamburger-menu
 navBarHm.addEventListener('click', function() {
     listItems = [];
-    printType.innerText = 'Type: Bar';
+    printType.innerText = 'type: Bar';
     clearWrapper(listElement, paginationElement);
-    window.apiUrl = "https://api.openbrewerydb.org/breweries?by_type=bar";
+    window.apiUrl = "https://api.openbrewerydb.org/breweries?by_type=bar&per_page=25";
     fetch(apiUrl)
     .then((res) => res.json())
     .then((data) => {
         data.forEach(elem => {
             listItems.push(elem);
         });
-    });
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+      });
 });
 
-// Searching
+// Searching 
 const searchInput = document.getElementById('search-inp');
 searchInput.addEventListener('keyup', e => {   
 
@@ -160,10 +179,17 @@ const paginationElement = document.getElementById('pagination');
 let currentPage = 1;
 let rows = 4;
 
+// changing the index to display the images
 function getRandomInt(maxNum) {
     return Math.floor(Math.random() * maxNum);
 }
 
+/** 
+** @param items - individual elements displayed on the page
+** @param wrapper - a div containing elements
+** @rowsPerPage {int} - number of rows per page
+** @page - actual page
+ */
 function DisplayElements (items, wrapper, rowsPerPage, page) {
     wrapper.innerHTML = "";
     page--;
@@ -174,6 +200,7 @@ function DisplayElements (items, wrapper, rowsPerPage, page) {
 
     var imgIndex = getRandomInt(10);
 
+    // a loop that prints the elements
     for (let i=0; i < paginatedItems.length; i++) {
         let item = paginatedItems[i];
 
@@ -207,6 +234,11 @@ function DisplayElements (items, wrapper, rowsPerPage, page) {
     }
 }
 
+/** 
+** @param items - individual elements displayed on the page
+** @param wrapper - a div containing elements
+** @rowsPerPage {int} - number of rows per page
+ */
 function paginationSetup (items, wrapper, rowsPerPage) {
     wrapper.innerHTML = "";
     let pageCount = Math.ceil(items.length / rowsPerPage);
@@ -216,6 +248,10 @@ function paginationSetup (items, wrapper, rowsPerPage) {
     }
 }
 
+/** 
+** @param items - individual elements displayed on the page
+** @page - actual page
+ */
 function paginationBtn(page, items) {
     let btn = document.createElement('button');
     btn.innerText = page;
@@ -232,10 +268,8 @@ function paginationBtn(page, items) {
 
         btn.classList.add('active');
     });
-
     return btn;
 }
-
 
 
 

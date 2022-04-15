@@ -11,10 +11,10 @@ footer.innerHTML = `
             </div>
             <div class="site-map">
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">List</a></li>
-                    <li><a href="#">About us</a></li>
-                    <li><a href="#">Custom</a></li>
+                    <li><a href="/index.html" target="_blank">Home</a></li>
+                    <li><a href="../html/list.html" target="_blank">List</a></li>
+                    <li><a href="../html/about-us.html" target="_blank">About us</a></li>
+                    <li><a href="../html/contact-us.html" target="_blank">Contact us</a></li>
                 </ul>
             </div>
             <div class="copyright">
