@@ -114,7 +114,7 @@ nav {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 13vh;
+    height: 18vh;
     
   }
   header img {
@@ -157,6 +157,12 @@ nav {
     color: #ec9315;
   }
 
+  a:is(:link, :active, :visited).active {
+    border: 3px solid #ec9315;
+    border-radius: 5px ;
+    padding: 10px;
+  }
+
   nav ul li:hover {
     transition: 0.3s;
     transform: scale(1.1);
@@ -175,11 +181,10 @@ nav {
     border-radius: 10px;
     padding: 15px;
     z-index: 100;
-
   }
 
   nav ul li:hover ul {
-    height: 23vh;
+    height: 225px;
     visibility:visible;
     opacity: 0.9;
     transform: translateY();
