@@ -1,6 +1,6 @@
 html {
   font-size: 16px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Beau Rivage", cursive;
   position: relative;
 }
 body {
@@ -74,6 +74,24 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
+  animation: modal 1s;
+}
+
+@keyframes modal {
+  0% {
+    width: 30%;
+    height: 30vh;
+    top: 0%;
+    left: 0%;
+    transform: rotate(0deg);
+  }
+  100% {
+    width: 90%;
+    height: 90vh;
+    top: 5%;
+    left: 5%;
+    transform: rotate(360deg);
+  }
 }
 .modal h2 {
   margin-top: 20vw;
@@ -131,7 +149,7 @@ body {
   display: flex;
   margin: 2% 5%;
   width: 90%;
-  background-color: gray;
+  background-color: #d1d3d4;
   cursor: pointer;
 }
 .text-info p {
@@ -221,7 +239,7 @@ body {
   .side-bar {
     display: block;
     width: 100%;
-    background-color: gray;
+    background-color: #d1d3d4;
     color: black;
   }
   .best-box {
@@ -229,7 +247,6 @@ body {
     padding: 0;
   }
   .best-box h3 {
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   }
   .best-box p {
     padding: 5%;
