@@ -104,6 +104,7 @@ body {
 
 #selected-type {
     text-align: center;
+    color: #3F352E;
     padding-top: 3vh;
     font-size: 2em;
 }

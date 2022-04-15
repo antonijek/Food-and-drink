@@ -55,7 +55,6 @@
 }
 
 .ham-dropdwn a {
-
   float: left;
 }
 
@@ -69,6 +68,7 @@
 
 #dropdwn-ul {
   display: block;
+  padding: 0;
 }
 
 #list-arrow:focus{
@@ -158,17 +158,17 @@ nav {
   }
 
   a:is(:link, :active, :visited).active {
-    border: 3px solid #ec9315;
-    border-radius: 5px ;
+    border-bottom: 3px solid #ec9315;
     padding: 10px;
   }
 
   nav ul li:hover {
     transition: 0.3s;
     transform: scale(1.1);
+    z-index: 100;
   }
 
-  nav ul li ul {
+  .dropdwn-ul {
     margin-left: -10vw;
     width: 25vw;
     height: 0;
@@ -186,24 +186,24 @@ nav {
   nav ul li:hover ul {
     height: 225px;
     visibility:visible;
-    opacity: 0.9;
+    opacity: 1;
     transform: translateY();
     z-index: 100;
   }
 
-  nav ul li ul li {
+  .dropdwn-ul li {
     width: 100%;
     padding: 30px 0 0 0;
     text-align: center;
   }
 
-  nav ul li ul li a {
+  .dropdwn-ul li a {
     color: #fff;
     padding: 8px 14px;
     display: block;
   }
 
-  nav ul li ul li a:hover {
+  .dropdwn-ul li a:hover {
     background-color: #ec9315;
     color: #111;
   }
@@ -216,7 +216,7 @@ nav {
 
 @media screen and (min-width: 1000px) {
 
-  nav ul li ul {
+  .dropdwn-ul {
     margin-left: -5vw;
     width: 13vw;
   }
