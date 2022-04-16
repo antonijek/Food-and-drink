@@ -7,23 +7,27 @@ const navLarge = returnLarge();
 import { returnBar } from '../src/header.js';
 const navBar = returnBar();
 
-// (function () {
+(function () {
 
 // array of elements
 let listItems = [];
 
-// for default display
-window.apiUrl = "https://api.openbrewerydb.org/breweries?per_page=30";
-fetch(apiUrl)
-.then((res) => res.json())
-.then((data) => {
+// display for default
+function defaultDisplay(listItemsArr) {
+    let apiUrl = "https://api.openbrewerydb.org/breweries?per_page=30";
+
+    fetch(apiUrl)
+    .then((res) => res.json())
+    .then((data) => {
         data.forEach(elem => {
-            listItems.push(elem);
+            listItemsArr.push(elem);
         });
-})
-.catch((error) => {
+    })
+    .catch((error) => {
     console.error('Error:', error);
   });
+}
+defaultDisplay(listItems);
 
 /** 
 ** @param listElem - all elements on the current page
@@ -49,7 +53,7 @@ navRegional.forEach(e => {
         listItems = [];
         printType('Regional');
         clearWrapper(listElement, paginationElement);
-        window.apiUrl = "https://api.openbrewerydb.org/breweries?by_type=regional&per_page=25";
+        window.apiUrl = "https://api.openbrewerydb.org/breweries?by_type=regional";
         fetch(apiUrl)
         .then((res) => res.json())
         .then((data) => {
@@ -69,7 +73,7 @@ navLarge.forEach(e => {
         listItems = [];
         printType('Large');
         clearWrapper(listElement, paginationElement);
-        window.apiUrl = "https://api.openbrewerydb.org/breweries?by_type=large&per_page=25";
+        window.apiUrl = "https://api.openbrewerydb.org/breweries?by_type=large";
         fetch(apiUrl)
         .then((res) => res.json())
         .then((data) => {
@@ -190,6 +194,7 @@ function DisplayElements (items, wrapper, rowsPerPage, page) {
 ** @param wrapper - a div containing elements
 ** @rowsPerPage {int} - number of rows per page
  */
+
 function paginationSetup (items, wrapper, rowsPerPage) {
     wrapper.innerHTML = "";
     let pageCount = Math.ceil(items.length / rowsPerPage);
@@ -223,7 +228,7 @@ function paginationBtn(page, items) {
     return btn;
 }
 
-// })();
+})();
 
 
 
