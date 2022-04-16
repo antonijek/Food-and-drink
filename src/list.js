@@ -27,6 +27,7 @@ function defaultDisplay(listItemsArr) {
     console.error('Error:', error);
   });
 }
+
 defaultDisplay(listItems);
 
 /** 
