@@ -1,3 +1,5 @@
+(function () {
+
 const footer = document.createElement("template");
 footer.id = "footer";
 footer.innerHTML = `
@@ -26,3 +28,5 @@ footer.innerHTML = `
 
 let importedFooter = document.querySelector(".footer");
 importedFooter.appendChild(footer.content);
+
+})();

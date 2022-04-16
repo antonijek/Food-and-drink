@@ -1,20 +1,13 @@
 
-
-
 // import dropdown lists
 import { returnRegional } from '../src/header.js';
-let navRegional = returnRegional();
+const navRegional = returnRegional();
 import { returnLarge } from '../src/header.js';
-let navLarge = returnLarge();
+const navLarge = returnLarge();
 import { returnBar } from '../src/header.js';
-let navBar = returnBar();
-//for hamburger menu 
-import { returnRegionalHm } from '../src/header.js';
-let navRegionalHm = returnRegionalHm();
-import { returnLargeHm } from '../src/header.js';
-let navLargeHm = returnLargeHm();
-import { returnBarHm } from '../src/header.js';
-let navBarHm = returnBarHm();
+const navBar = returnBar();
+
+// (function () {
 
 // array of elements
 let listItems = [];
@@ -41,116 +34,74 @@ function clearWrapper(listElem, paginElem) {
     paginElem.innerHTML = "";
 }
 
-let printType = document.getElementById('selected-type');
+/** 
+** function for printing type on list page
+** @param str - string to be returned
+ */
+function printType(str) {
+    const printType = document.getElementById('selected-type');
+    return printType.innerText = str
+}
 
 // for regional 
-navRegional.addEventListener('click', function() {
-    listItems = [];
-    printType.innerText = 'type: Regional';
-    clearWrapper(listElement, paginationElement);
-    window.apiUrl = "https://api.openbrewerydb.org/breweries?by_type=regional&per_page=25";
-    fetch(apiUrl)
-    .then((res) => res.json())
-    .then((data) => {
-        data.forEach(elem => {
-            listItems.push(elem);
-        });
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-      });
-});
-
-// regional - hamburger menu
-navRegionalHm.addEventListener('click', function() {
-    listItems = [];
-    printType.innerText = 'type: Regional';
-    clearWrapper(listElement, paginationElement);
-    window.apiUrl = "https://api.openbrewerydb.org/breweries?by_type=regional&per_page=25";
-    fetch(apiUrl)
-    .then((res) => res.json())
-    .then((data) => {
-        data.forEach(elem => {
-            listItems.push(elem);
-        });
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-      });
+navRegional.forEach(e => {
+    e.addEventListener('click', function() {
+        listItems = [];
+        printType('Regional');
+        clearWrapper(listElement, paginationElement);
+        window.apiUrl = "https://api.openbrewerydb.org/breweries?by_type=regional&per_page=25";
+        fetch(apiUrl)
+        .then((res) => res.json())
+        .then((data) => {
+            data.forEach(elem => {
+                listItems.push(elem);
+            });
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+          });
+    });
 });
 
 // for large
-navLarge.addEventListener('click', function() {
-    listItems = [];
-    printType.innerText = 'type: Large';
-    clearWrapper(listElement, paginationElement);
-    window.apiUrl = "https://api.openbrewerydb.org/breweries?by_type=large&per_page=25";
-    fetch(apiUrl)
-    .then((res) => res.json())
-    .then((data) => {
-        data.forEach(elem => {
-            listItems.push(elem);
-        });
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-      });
-});
-
-// large - hamburger
-navLargeHm.addEventListener('click', function() {
-    listItems = [];
-    printType.innerText = 'type: Large';
-    clearWrapper(listElement, paginationElement);
-    window.apiUrl = "https://api.openbrewerydb.org/breweries?by_type=large&per_page=25";
-    fetch(apiUrl)
-    .then((res) => res.json())
-    .then((data) => {
-        data.forEach(elem => {
-            listItems.push(elem);
-        });
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-      });
-});
-
+navLarge.forEach(e => {
+    e.addEventListener('click', function() {
+        listItems = [];
+        printType('Large');
+        clearWrapper(listElement, paginationElement);
+        window.apiUrl = "https://api.openbrewerydb.org/breweries?by_type=large&per_page=25";
+        fetch(apiUrl)
+        .then((res) => res.json())
+        .then((data) => {
+            data.forEach(elem => {
+                listItems.push(elem);
+            });
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+          });
+    });
+})
 
 // for bar
-navBar.addEventListener('click', function() {
-    listItems = [];
-    printType.innerText = 'type: Bar';
-    clearWrapper(listElement, paginationElement);
-    window.apiUrl = "https://api.openbrewerydb.org/breweries?by_type=bar";
-    fetch(apiUrl)
-    .then((res) => res.json())
-    .then((data) => {
-        data.forEach(elem => {
-            listItems.push(elem);
-        });
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-      });
-});
-
-// bar - hamburger-menu
-navBarHm.addEventListener('click', function() {
-    listItems = [];
-    printType.innerText = 'type: Bar';
-    clearWrapper(listElement, paginationElement);
-    window.apiUrl = "https://api.openbrewerydb.org/breweries?by_type=bar&per_page=25";
-    fetch(apiUrl)
-    .then((res) => res.json())
-    .then((data) => {
-        data.forEach(elem => {
-            listItems.push(elem);
-        });
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-      });
-});
+navBar.forEach(e => {
+    e.addEventListener('click', function() {
+        listItems = [];
+        printType('Bar');
+        clearWrapper(listElement, paginationElement);
+        window.apiUrl = "https://api.openbrewerydb.org/breweries?by_type=bar";
+        fetch(apiUrl)
+        .then((res) => res.json())
+        .then((data) => {
+            data.forEach(elem => {
+                listItems.push(elem);
+            });
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+          });
+    });
+})
 
 // Searching 
 const searchInput = document.getElementById('search-inp');
@@ -251,6 +202,7 @@ function paginationSetup (items, wrapper, rowsPerPage) {
 /** 
 ** @param items - individual elements displayed on the page
 ** @page - actual page
+** returned value is current active button
  */
 function paginationBtn(page, items) {
     let btn = document.createElement('button');
@@ -271,7 +223,7 @@ function paginationBtn(page, items) {
     return btn;
 }
 
-
+// })();
 
 
 

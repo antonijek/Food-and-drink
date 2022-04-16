@@ -1,4 +1,5 @@
 
+
 const header = document.createElement("template");
 header.id = "header";
 header.innerHTML = `
@@ -25,7 +26,7 @@ header.innerHTML = `
       </ul>
     </nav>
 
-    <a href ='#'> <img src="../images/beer_123784216.png" alt="logo" /></a>
+    <a href ='/index.html'> <img src="../images/beer_123784216.png" alt="logo" /></a>
 
   </header>
 
@@ -41,9 +42,9 @@ header.innerHTML = `
       
       <div id="ham-dropdwn-div" class="hide">
         <ul id="dropdwn-ul">
-          <li><a class="regional-hm" href="#">Regional</a></li>
-          <li><a class="large-hm" href="#">Large</a></li>
-          <li><a class="bar-hm" href="#">Bar</a></li>
+          <li><a class="regional" href="#">Regional</a></li>
+          <li><a class="large" href="#">Large</a></li>
+          <li><a class="bar" href="#">Bar</a></li>
         </ul>
       </div>
 
@@ -74,9 +75,9 @@ let hamburger = document.querySelector(".hamburger");
 hamburger.addEventListener("click", hamburgerHandler);
 let hamburgerSmallScreen = document.querySelector(".hamburger-smallscreen");
 
-let navRegional = document.querySelector(".regional");
-let navLarge = document.querySelector(".large");
-let navBar = document.querySelector(".bar");
+let navRegional = document.querySelectorAll(".regional");
+let navLarge = document.querySelectorAll(".large");
+let navBar = document.querySelectorAll(".bar");
 
 export function returnRegional() {
   return navRegional;
@@ -87,21 +88,6 @@ export function returnLarge() {
 export function returnBar() {
   return navBar;
 }
-
-// for hamburger menu
-let navRegionalHm = document.querySelector(".regional-hm");
-let navLargeHm = document.querySelector(".large-hm");
-let navBarHm = document.querySelector(".bar-hm");
-export function returnRegionalHm() {
-  return navRegionalHm;
-}
-export function returnLargeHm() {
-  return navLargeHm;
-}
-export function returnBarHm() {
-  return navBarHm;
-}
-
 
 let listArrow = document.getElementById('list-arrow');
 let hamDropdwnDiv = document.getElementById('ham-dropdwn-div');
