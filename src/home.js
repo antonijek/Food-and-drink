@@ -27,6 +27,7 @@
       hendlerResponse(res, screen);
     })
     .catch((err) => console.log(err));
+
   //takes array and number,calls createBox function and return array
   const hendlerResponse = (data, num) => {
     let items = data.slice(x, x + num);
@@ -35,6 +36,7 @@
     });
     return items;
   };
+
   // takes event parametar, search apropriate image and calls function openModal
   const loadMoreInformation = (e) => {
     let backgroundImage = e.target.parentElement.style.backgroundImage;
@@ -45,7 +47,7 @@
     openModal(numberOfImage, tenItemsFromResponse);
   };
 
-  //takes array and number, create a box, and return the box
+  //takes array and number, create an element object, and return the object
   const createBox = (data, number) => {
     let box = document.createElement("div");
     box.classList.add("box");
@@ -65,7 +67,8 @@
     boxes.appendChild(box);
     return box;
   };
-  //sets displays and calls  createModalContent function
+
+  //sets displays to block and calls  createModalContent function
   const openModal = (index, arr, x = 0) => {
     let brewery = arr[index - x];
     modal.innerHTML = "";
@@ -73,7 +76,8 @@
     overlay.style.display = "block";
     createModalContent(brewery, index);
   };
-  //takes array and number, create modal content, and return modal
+
+  //takes array and number, create object, and return that object
   const createModalContent = (data, i) => {
     let closeX = document.createElement("p");
     closeX.innerHTML = "X";
@@ -93,11 +97,13 @@
     modal.append(closeX, name, img, webAdress, type, address, city);
     return modal;
   };
+
   //sets displays to none
   const closeModal = (elem1, elem2) => {
     elem1.style.display = "none";
     elem2.style.display = "none";
   };
+
   //increases and monitors variable x
   const increaseX = () => {
     x++;
@@ -115,6 +121,7 @@
     x--;
     nextItem(boxes, tenItemsFromResponse);
   };
+
   //creating and returning array depends on screen size and variable x and calls createBox function
   const nextItem = (elem, arr) => {
     elem.innerHTML = "";
@@ -145,14 +152,13 @@
     return brewery;
   };
 
-  setInterval(increaseX, 3000);
-
   fetch(apiUrlLarge)
     .then((res) => res.json())
     .then((res) => {
       sortingByDistance(res, theNearest3);
     })
     .catch((err) => console.log(err));
+
   //takes array and number, sorts array and return new array
   const sortingByDistance = (data, num) => {
     let closestBrewery = data.sort((a, b) =>
@@ -176,6 +182,7 @@
     });
     return nearest3;
   };
+
   //increase and decrease variable x on keyboard depends on mouse position
   const keyboardSliding = (e) => {
     if (e.key === "ArrowRight" && mousePointX > 0 && mousePointY > 0) {
@@ -185,12 +192,13 @@
       decreaseX();
     }
   };
+
   //sets variables  mousePointX and  mousePointY depends on mouse position
   const setMousePosition = (e) => {
     mousePointX = e.offsetX;
     mousePointY = e.offsetY;
   };
-
+  //sets variables  mousePointX and  mousePointY to 0
   const resetMousePosition = () => {
     mousePointX = 0;
     mousePointY = 0;
@@ -203,7 +211,8 @@
       loadMore();
     })
     .catch((err) => console.log(err));
-  //takes array and number, create a box content, and return the top rated box
+
+  //takes array and number, create an object and return it
   const createTopBox = (data, index) => {
     let topRated = document.createElement("div");
     topRated.classList.add("top-rated");
@@ -223,6 +232,7 @@
     wraper.appendChild(topRated);
     return topRated;
   };
+
   //creates new arr and return it, sets variable y depends on screen and calls function createTopBox
   const loadMore = () => {
     wraper.innerHTML = "";
@@ -238,6 +248,8 @@
     return numberBreweryOnScreen;
   };
 
+  setInterval(increaseX, 3000);
+
   let wraper = document.querySelector(".top-rated-wraper");
   let loadMoreBtn = document.querySelector(".btn");
   loadMoreBtn.addEventListener("click", loadMore);
@@ -246,14 +258,16 @@
   screen === numberOfBoxesForMObile
     ? (leftArrow.ontouchstart = decreaseX)
     : (leftArrow.onclick = decreaseX);
+
   let rightArrow = document.querySelector(".right-arrow");
   screen === numberOfBoxesForMObile
-    ? (rightArrow.ontouchstart = decreaseX)
-    : (rightArrow.onclick = decreaseX);
+    ? (rightArrow.ontouchstart = increaseX)
+    : (rightArrow.onclick = increaseX);
 
   let slider = document.querySelector(".slider");
   slider.addEventListener("mouseenter", setMousePosition);
   slider.addEventListener("mouseleave", resetMousePosition);
+
   document.addEventListener("keyup", keyboardSliding);
   let boxes = document.querySelector(".boxes");
   let bestBox = document.querySelector(".best-box");
