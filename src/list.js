@@ -50,6 +50,7 @@ function printType(str) {
 
 // for regional 
 navRegional.forEach(e => {
+
     e.addEventListener('click', function() {
         listItems = [];
         printType('Regional');
@@ -70,6 +71,7 @@ navRegional.forEach(e => {
 
 // for large
 navLarge.forEach(e => {
+
     e.addEventListener('click', function() {
         listItems = [];
         printType('Large');
@@ -90,6 +92,7 @@ navLarge.forEach(e => {
 
 // for bar
 navBar.forEach(e => {
+    
     e.addEventListener('click', function() {
         listItems = [];
         printType('Bar');

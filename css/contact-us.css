@@ -126,6 +126,7 @@
 }
 
 @media screen and (min-width: 846px) {
+
   .upper-section {
     height: 50vh;
     font-size: 3em;
@@ -186,4 +187,5 @@
     background-color: #525151;
     color: #d1d3d4;
   }
+  
 }
