@@ -3,6 +3,8 @@
   width: 100%;
   background-color: #3f352e;
   position: relative;
+  /* font-family: "Beau Rivage", cursive; */
+  font-family: 'Fira Sans', sans-serif;
 }
 .hamburger {
   margin: 10%;
@@ -52,6 +54,7 @@
 .ham-dropdwn {
   width: 100%;
   display: inline-block;
+
 }
 
 .ham-dropdwn a {
